@@ -1,10 +1,9 @@
 import React from 'react';
-//import App from './components/App.js';
 import Title from './components/Title.js';
 import ShoppingList from './components/ShoppingList.js';
 import './App.css';
 
-
+/* A ES6 class style stateful component for the shopping list application */
 class App extends React.Component {
   constructor(props)
   {
