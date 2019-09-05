@@ -3,7 +3,7 @@ import Title from './Title';
 import ShoppingList from './ShoppingList';
 
 /* A ES6 class style stateful component for the shopping list application */
-class App extends React.Component {
+/*class App extends React.Component {
   constructor(props)
   {
     /* You should call super(props) before any other statement. 
