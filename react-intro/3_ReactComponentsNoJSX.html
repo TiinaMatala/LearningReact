@@ -37,6 +37,15 @@
   <div id="application"></div>
 
   <script>
+    const ShoppingListItem = props => React.createElement('li', { className: 'item'}, props.value);
+    
+    const ShoppingList = props => {
+      return React.createElement('ul', null,
+      props.items.map(
+        i => React.createElement(ShoppingListItem, { value:i}, null)
+      ) 
+      )
+    }
     /* A component for rendering Title, notice how this is just a function which returns a react element */
     const Title = props => {
       return React.createElement('div', null,
@@ -60,9 +69,8 @@
         'div',
         { className: 'shoppingList' },
         React.createElement(Title, { applicationDescription, applicationName }, null), // Use the Title component by creating a new react element from it
-        React.createElement('ul', null,
-          items.map(i => React.createElement('li', { className: 'item'}, i))
-        )
+        React.createElement(ShoppingList, { items }, null)
+          //items.map(i => React.createElement('li', { className: 'item'}, i))
       );
     }
 

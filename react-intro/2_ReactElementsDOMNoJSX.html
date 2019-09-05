@@ -25,12 +25,19 @@
       margin-left: 10px;
       font-style: italic;
     }
+
+    li
+    {
+      background-color: pink;
+    }
   </style>
 </head>
 <body>
   <div id="application"></div>
 
   <script>
+
+    const items = ['Milk', 'Bread', 'Bananas', 'Cheese'];
     const app = React.createElement(
         'div',
         { className: 'shoppingList' },
@@ -39,9 +46,18 @@
           React.createElement('div', { id: 'titleSub'}, 'The best shopping list')
         ),
         React.createElement('ul', null,
-          React.createElement('li', null, 'Milk')
+        
+          items.map(item => React.createElement('li', { className: 'pink' }, item))
+        
+        /*React.createElement('ul', null,
+          React.createElement('li', { className: 'pink }, 'Milk'),
+          React.createElement('li', { className: 'pink }, 'Bread'),
+          React.createElement('li', { className: 'pink }, 'Bananas'),
+          React.createElement('li', { className: 'pink }, 'Cheese')
+        )*/
         )
     );
+    
 
     ReactDOM.render(app, document.getElementById('application'));
   </script>

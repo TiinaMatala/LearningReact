@@ -42,8 +42,8 @@
   <script type="text/babel">  // Notice the script type attribute, which is required for the babel to work 
 
     /* Shopping list item, which renders the prop 'value' */
-    const ShoppingListItem = props => React.createElement('li', { className: 'item'}, props.value);
-
+    //const ShoppingListItem = props => React.createElement('li', { className: 'item'}, props.value);
+    const ShoppingListItem = props => <li className = 'item'>{ props.value } { props.amount }{props.quantity }</li>; 
     /* Shopping list component, which renders bunch of ShoppingListItem components inside a HTML ul element based on the data received through items prop */
     const ShoppingList = props => {
       return <ul>
@@ -51,6 +51,8 @@
           props.items.map(i => 
             <ShoppingListItem 
               value={ i.value } 
+              amount={ i.amount }
+              quantity={ i.quantity }
               key={ i.id }
             />
           )
@@ -69,10 +71,10 @@
     /* A component for the shopping list application */
     const App = props => {
       const items = [
-        { id: 1, value: 'Milk' },
-        { id: 1, value: 'Bananas' },
-        { id: 1, value: 'Bread' },
-        { id: 1, value: 'Eggs' }
+        { id: 1, value: 'Milk', amount: 4, quantity: 'l' },
+        { id: 2, value: 'Bananas', amount: 2, quantity: 'pcs' },
+        { id: 3, value: 'Bread', amount: 6, quantity: 'pcs' },
+        { id: 4, value: 'Rice', amount: 400, quantity: 'g' }
       ];
 
       const { applicationDescription, applicationName } = props;
