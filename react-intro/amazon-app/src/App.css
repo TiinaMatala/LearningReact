@@ -1,0 +1,18 @@
+.Product {
+  background-color: whitesmoke;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  float: left;
+  margin: 10px;
+}
+
+li a {
+  text-align: center;
+  padding: 16px;
+}
+
