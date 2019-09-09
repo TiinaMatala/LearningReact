@@ -16,9 +16,9 @@ class App extends React.Component {
     this.state = {
       items: [
         { id: 1, name: 'Roku Express', manifacturer: 'Roku', value: '26$', image: "Product1.PNG" },
-        { id: 2, name: 'HP63', manifacturer: 'HP', value: '45.89$s' },
-        { id: 3, name: 'Samsung memory card', manifacturer: 'Samsung', value: '18.99$' },
-        { id: 4, name: 'HP Office Jet Printer', manifacturer: 'HP', value: '99.89$' }
+        { id: 2, name: 'HP63', manifacturer: 'HP', value: '45.89$s', image: "Product2.PNG" },
+        { id: 3, name: 'Samsung memory card', manifacturer: 'Samsung', value: '18.99$', image: "Product3.PNG" },
+        { id: 4, name: 'HP Office Jet Printer', manifacturer: 'HP', value: '99.89$', image: "Product4.PNG" }
       ]
     };
 
