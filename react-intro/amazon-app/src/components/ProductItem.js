@@ -1,20 +1,23 @@
 import React from "react";
 import ProductPhotos from './ProductPhotos';
 const ProductItem = props => {
-    return <li className="item flex">
-      <div className="flex itemQtyUnit">
+    let style = {float: "left"}
+    if (props.layoutModeGrid == false) {
+      style = {float: "none"};
+    }
+    return <li style={style}>
+      
         <div>
           { props.name }
         </div>
         <div>
           { props.manifacturer }
         </div>
-      </div>
       <div>
         { props.value }
       </div>
       <div>
-        <ProductPhotos/>
+      <img src={ props.image }/>
       </div>
     </li>
   }

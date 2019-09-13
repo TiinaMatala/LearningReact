@@ -3,6 +3,7 @@ import Product from './components/Product.js';
 //import ProductItem from './components/ProductItem.js';
 //import ProductPhotos from './components/ProductPhotos.js';
 import './App.css';
+import ProductPhotos from './components/ProductPhotos.js';
 
 /* A ES6 class style stateful component for the shopping list application */
 class App extends React.Component {
@@ -20,7 +21,8 @@ class App extends React.Component {
         { id: 3, name: 'Samsung memory card', manifacturer: 'Samsung', value: '18.99$', image: "Product3.PNG" },
         { id: 4, name: 'HP Office Jet Printer', manifacturer: 'HP', value: '99.89$', image: "Product4.PNG" }
       ],
-      inputValue: ""
+      inputValue: "",
+      layoutModeGrid: false
     };
 
   }
@@ -29,29 +31,26 @@ class App extends React.Component {
     this.setState( { inputValue: event.target.value });
   }  
 
-  filterItems = (inputValue) => {
-    this.setState( { items: inputValue.filter(this.state.items)})
-  }
-
+  toggleView = () => {
+    this.setState({layoutModeGrid: ! this.state.layoutModeGrid})
+}
   render()
   {
+
     return (
     <div className='App'>
       <div>
         <input type= "text" value={ this.state.inputValue } onChange= { this.textInputChange }></input>
       </div>
       <div>
-        Content of the input field: { this.state.inputValue }
+          <button onClick = {this.toggleView} >Toggle view</button>
       </div>
       <div className='Product'>
-      <Product items={ this.state.items.filter ((item) => {
-        if(item.name === this.state.inputValue) {
-          return true;
-        }
-        else {
-          return false;
-        }
-      } )} />
+            < Product items={ this.state.items.filter( (item) => {
+            return item.name.includes(this.state.inputValue)
+            })
+            }
+            layoutModeGrid={this.state.layoutModeGrid}/>
       </div>    
     </div>
     );
