@@ -47,12 +47,26 @@ class App extends React.Component {
     this.setState({ registerForm: false})
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.setState({
+      inputForm:
+      {
+        name: event.target.name.value,
+        address: event.target.address.value,
+        email: event.target.email.value,
+        phone: event.target.phone.value
+      },
+      registerForm: false
+    })
+  }
+
   render()
   {
     if (this.state.registerForm == true) {
       return (
         <div>
-          <Register onCancel = { this.registerCancel }/>
+          <Register onCancel = { this.registerCancel } onSubmit={ this.handleSubmit } />
         </div>
       )
 
@@ -64,18 +78,25 @@ class App extends React.Component {
             <input type= "text" value={ this.state.inputValue } onChange= { this.textInputChange }></input>
           </div>
           <div>
-              <button onClick = {this.toggleView} >Toggle view</button>
+              <button onClick = { this.registrate } className="Register">Register</button>
           </div>
           <div>
-              <button onClick = { this.registrate } id="Register">Register</button>
+              <button onClick = {this.toggleView} >Toggle view</button>
           </div>
+          <div className="Client">
+          { this.state.inputForm.name } <br/>
+          { this.state.inputForm.address } <br/>
+          { this.state.inputForm.email } <br/>
+          { this.state.inputForm.phone }
+          </div>  
           <div className='Product'>
                 < Product items={ this.state.items.filter( (item) => {
                 return item.name.includes(this.state.inputValue)
                 })
                 }
                 layoutModeGrid={this.state.layoutModeGrid}/>
-          </div>    
+          </div> 
+           
         </div>
         );
 

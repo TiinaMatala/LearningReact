@@ -2,9 +2,9 @@ import React from 'react'
 
 export default function Register(props) {
     return (
-        <div>
+        <div className="form">
             <h1>Registration form</h1>
-            <form>
+            <form onSubmit= { props.onSubmit }>
                 <label>Name:</label>
                 <br/>
                 <input type="text" name="name"></input>
