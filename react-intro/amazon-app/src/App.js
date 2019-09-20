@@ -1,7 +1,8 @@
 import React from 'react';
-import Product from './components/Product.js';
 import './App.css';
 import Register from './components/Register';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import SearchView from './components/SearchView.js';
 
 /* A ES6 class style stateful component for the shopping list application */
 class App extends React.Component {
@@ -39,13 +40,7 @@ class App extends React.Component {
     this.setState({layoutModeGrid: ! this.state.layoutModeGrid})
 }
 
-  registrate = () => {
-    this.setState({ registerForm: true})
-  }
-
-  registerCancel = () => {
-    this.setState({ registerForm: false})
-  }
+ 
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -57,55 +52,39 @@ class App extends React.Component {
         email: event.target.email.value,
         phone: event.target.phone.value
       },
-      registerForm: false
     })
   }
 
   render()
   {
-    if (this.state.registerForm == true) {
-      return (
-        <div>
-          <Register onCancel = { this.registerCancel } onSubmit={ this.handleSubmit } />
-        </div>
-      )
+    return (
+    <Router>
+      <Route path="/" exact render={
+        (routeProps) =>
+        <SearchView 
+        items={ this.state.items } 
+        inputValue={ this.state.inputValue } 
+        layoutModeGrid={ this.state.layoutModeGrid } 
+        inputForm={ this.state.inputForm }
+        toggleView={ this.toggleView } 
+        registrate= { this.registrate }
+        textInputChange= { this.textInputChange } 
+        />
+       } >
+      </Route>
 
-    }
-    else {
-      return (
-        <div className='App'>
-          <div>
-            <input type= "text" value={ this.state.inputValue } onChange= { this.textInputChange }></input>
-          </div>
-          <div>
-              <button onClick = { this.registrate } className="Register">Register</button>
-          </div>
-          <div>
-              <button onClick = {this.toggleView} >Toggle view</button>
-          </div>
-          <div className="Client">
-          { this.state.inputForm.name } <br/>
-          { this.state.inputForm.address } <br/>
-          { this.state.inputForm.email } <br/>
-          { this.state.inputForm.phone }
-          </div>  
-          <div className='Product'>
-                < Product items={ this.state.items.filter( (item) => {
-                return item.name.includes(this.state.inputValue)
-                })
-                }
-                layoutModeGrid={this.state.layoutModeGrid}/>
-          </div> 
-           
-        </div>
-        );
-
-    }
-
-    
-  } 
-
-
+      <Route path="/register" exact render={ 
+        (routeProps) => 
+        <Register 
+        onCancel = { this.registerCancel } 
+        onSubmit={ this.handleSubmit }
+        {...routeProps}
+        /> 
+      }>
+      </Route>
+    </Router> 
+    )
+  }
 }
 
 export default App;

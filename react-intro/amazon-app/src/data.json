@@ -1,0 +1,18 @@
+{
+    "items": [
+        {
+            "id": 1, 
+            "name": "Roku Express",          
+            "manifacturer": "Roku",    
+            "value": "$26",     
+            "image": "Product1.PNG"
+        },
+        {
+            "id": 2, 
+            "name": "HP63",                  
+            "manifacturer": "HP",      
+            "value": "$45.89", 
+            "image": "Product2.PNG"
+        }
+    ]
+}

@@ -1,11 +1,11 @@
 import React from "react";
-import ProductPhotos from './ProductPhotos';
 const ProductItem = props => {
     let style = {float: "left"}
-    if (props.layoutModeGrid == false) {
+    if (props.layoutModeGrid === false) {
       style = {float: "none"};
     }
-    return <li style={style}>
+    return ( 
+    <li style={style}>
       
         <div>
           { props.name }
@@ -20,6 +20,7 @@ const ProductItem = props => {
       <img src={ props.image }/>
       </div>
     </li>
+    )
   }
   
   export default ProductItem;
