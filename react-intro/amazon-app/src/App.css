@@ -19,6 +19,7 @@ li {
   float: left;
   margin: 10px;
   width: 25%;
+  list-style-type: none;
 }
 
 li a {

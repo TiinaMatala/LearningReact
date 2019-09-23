@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+
 const ProductItem = props => {
     let style = {float: "left"}
     if (props.layoutModeGrid === false) {
@@ -17,7 +19,7 @@ const ProductItem = props => {
         { props.value }
       </div>
       <div>
-      <img src={ props.image }/>
+      <Link to={ `/productView/${props.id}`}><img src={ props.image }></img></Link>
       </div>
     </li>
     )
