@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import './App.css';
 import Register from './components/Register';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -17,29 +18,24 @@ class App extends React.Component {
 
     this.state = {
       items: [
-        { id: 1, name: 'Roku Express',          manifacturer: 'Roku',    value: '26$',     image: "Product1.PNG",
-          promos: "Simple setup with an included high speed HDMI Cable" },
-        { id: 2, name: 'HP63',                  manifacturer: 'HP',      value: '45.89$', image: "Product2.PNG",
-          promos: "Up to 2x more prints with Original HP ink vs refill cartridges" },
-        { id: 3, name: 'Samsung memory card',   manifacturer: 'Samsung', value: '18.99$',  image: "Product3.PNG",
-          promos: "Water proof, Shock proof, Temperature proof, X ray proof, Magnetic proof" },
-        { id: 4, name: 'HP Office Jet Printer', manifacturer: 'HP',      value: '99.89$',  image: "Product4.PNG",
-          promos: "INK, SHIPPING and RECYCLING are all included in a monthly HP Instant Ink plan" },
-        { id: 5, name: 'Western Digital Hard Drive', manifacturer: 'Western Digital', value: '59.99$', image: "Product5.PNG",
-          promos: "Improve PC performance" },
-        { id: 6, name: 'Roku Streaming Stick',  manifacturer: 'Roku',    value: '59.96$',  image: "Product6.PNG",
-          promos: "Powerful, portable, exceptional wireless" },
-        { id: 7, name: 'Acer Monitor',          manifacturer: 'Acer',    value: '89.99$',  image: "Product7.PNG",
-          promos: "Radeon free Sync technology" },
-        { id: 8, name: 'TP Link Router',        manifacturer: 'TP Link', value: '57.99$',  image: "Product8.PNG",
-          promos: "Simultaneous dual band WiFi: browse the web on one band while streaming media on the other" }
-      ],
+        ],
       inputValue: "",
       layoutModeGrid: true,
       registerForm: false,
       inputForm: { name:"" , address:"" , email:"" , phone:"" }
     };
 
+  }
+
+  componentDidMount = () =>
+  {
+    axios.get('http://localhost:4000/items').then(result => {  
+    this.setState({ items: result.data.items});
+    })
+    .catch(error => {
+      console.error(error);
+      this.setState({ networkError: true })
+    })
   }
 
   textInputChange = (event) => {
